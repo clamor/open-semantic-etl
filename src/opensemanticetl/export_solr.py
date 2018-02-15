@@ -5,11 +5,12 @@ import requests
 import json
 import urllib.request
 import urllib.parse
+import os
 
 # Export data to Solr
 class export_solr(object):
 	
-	def __init__(self, solr = 'http://localhost:8983/solr/', core = 'core1', verbose = False):
+	def __init__(self, solr = os.getenv('OSS_SOLR_URL', default='http://localhost:8983/solr/'), core = 'core1', verbose = False):
 	
 		self.verbose = verbose
 	

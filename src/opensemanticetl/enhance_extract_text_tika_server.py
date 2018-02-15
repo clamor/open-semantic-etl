@@ -2,6 +2,7 @@ import io
 import pycurl
 import sys
 import json
+import os
 
 # Extract text from filename
 class enhance_extract_text_tika_server(object):
@@ -39,10 +40,11 @@ class enhance_extract_text_tika_server(object):
 				debug = True
 	
 
-		if 'tika_server' in parameters:
-			tika_server = parameters['tika_server']
-		else:
-			tika_server = 'http://localhost:9998'
+		# if 'tika_server' in parameters:
+		# 	tika_server = parameters['tika_server']
+		# else:
+		# 	tika_server = 'http://localhost:9998'
+		tika_server = os.getenv('OSS_TIKA_URL', default='http://localhost:9998')
 
 
 		uri = tika_server + '/rmeta/form/text'

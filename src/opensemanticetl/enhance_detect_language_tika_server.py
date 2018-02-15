@@ -1,5 +1,6 @@
 import sys
 import requests
+import os
 
 # Extract text from filename
 class enhance_detect_language_tika_server(object):
@@ -11,10 +12,11 @@ class enhance_detect_language_tika_server(object):
 			if parameters['verbose']:	
 				verbose = True
 	
-		if 'tika_server' in parameters:
-			tika_server = parameters['tika_server']
-		else:
-			tika_server = 'http://localhost:9998'
+		# if 'tika_server' in parameters:
+		# 	tika_server = parameters['tika_server']
+		# else:
+		# 	tika_server = 'http://localhost:9998'
+		tika_server = os.getenv('OSS_TIKA_URL', default='http://localhost:9998')
 
 		uri = tika_server + '/language/string'
 

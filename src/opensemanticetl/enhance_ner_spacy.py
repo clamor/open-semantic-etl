@@ -1,6 +1,7 @@
 import etl
 import requests
 import json
+import os
 
 #
 # SpaCy Named Entitiy Recognizer (NER)
@@ -68,7 +69,7 @@ class enhance_ner_spacy(object):
 
 		# classify/tag with class each word of the content
 
-		url = "http://localhost:8000/ent"
+		url = os.getenv('OSS_SPACY_URL', default='http://localhost:8000/ent')
 		headers = {'content-type': 'application/json'}
 		d = {'text': text, 'model': classifier}
 
