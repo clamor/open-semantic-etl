@@ -7,6 +7,7 @@
 
 # Queue handler
 from celery import Celery
+import os
 
 # ETL connectors
 from etl import ETL
@@ -19,7 +20,7 @@ from etl_rss import Connector_RSS
 verbose = True
 quiet = False
 
-app = Celery('etl.tasks')
+app = Celery('etl.tasks', broker=os.getenv('OSS_CELERY_BROKER', default='pyamqp://guest@localhost/'))
 app.conf.CELERYD_MAX_TASKS_PER_CHILD = 1
 
 etl_delete = Delete()
